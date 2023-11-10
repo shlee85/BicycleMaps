@@ -2,6 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:required="true" />
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:required="true" />
+
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,13 +26,19 @@
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 지도 호출 KEY API -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_api_key" />
     </application>
 
 </manifest>
